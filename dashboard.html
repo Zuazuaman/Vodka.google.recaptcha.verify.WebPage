@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Done</title>
+</head>
+<body>
+  <h1>Thank!</h1>
+  <p>You has verify!</p>
+  <script>
+    // Mengecek apakah cookie reCAPTCHA v3 terverifikasi
+    const recaptchaV3Verified = document.cookie.includes("recaptcha_v3_verified=true");
+
+    if (!recaptchaV3Verified) {
+      // Redirect kembali ke halaman yang sesuai jika reCAPTCHA v3 belum terverifikasi
+      window.location.href = "checkpoint2.html";
+    }
+  </script>
+</body>
+</html>
