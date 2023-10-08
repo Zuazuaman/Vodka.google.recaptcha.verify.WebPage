@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkpoint 1 - Vodka Verify reCaptcha</title>
+  <!-- Script reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+  <h1>Checkpoint 1 - Vodka Verify reCaptcha</h1>
+  <form action="proses-form.php" method="post">
+    <!-- elemen formulir -->
+    <label for="nama">Nama:</label>
+    <input type="text" name="nama" id="nama" placeholder="Masukkan nama" required>
+    
+    <!-- Teks tambahan -->
+    <p>Vodka Verify reCaptcha. Google reCaptcha</p>
+
+    <!-- elemen reCAPTCHA v2 -->
+    <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_V2_SITE_KEY" data-callback="onSubmit"></div>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    function onSubmit(token) {
+      // Membuat cookie setelah reCAPTCHA v2 terverifikasi
+      document.cookie = "recaptcha_verified=true";
+      // Redirect ke Checkpoint 2
+      window.location.href = "checkpoint2.html";
+    }
+  </script>
+</body>
+</html>
