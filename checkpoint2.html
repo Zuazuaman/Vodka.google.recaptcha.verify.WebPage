@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkpoint 2 - Vodka Verify reCaptcha</title>
+  <!-- Script reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_V3_SITE_KEY"></script>
+</head>
+<body>
+  <h1>Checkpoint 2 - Vodka Verify reCaptcha</h1>
+  <form action="proses-form.php" method="post" id="myForm">
+    <!-- elemen formulir -->
+    <label for="nama">Nama:</label>
+    <input type="text" name="nama" id="nama" placeholder="Masukkan nama" required>
+    
+    <!-- Teks tambahan -->
+    <p>Vodka Verify reCaptcha. Google reCaptcha</p>
+
+    <!-- elemen reCAPTCHA v3 -->
+    <button type="button" onclick="submitForm()">Submit</button>
+  </form>
+  <script>
+    function submitForm() {
+      // Meminta token reCAPTCHA v3
+      grecaptcha.execute('YOUR_RECAPTCHA_V3_SITE_KEY', { action: 'submit_form' })
+        .then(function(token) {
+          // Menambahkan token ke formulir sebelum mengirim
+          document.getElementById('myForm').insertAdjacentHTML('beforeend', '<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+
+          // Mengecek apakah cookie reCAPTCHA v2 terverifikasi
+          const recaptchaV2Verified = document.cookie.includes("recaptcha_verified=true");
+
+          if (recaptchaV2Verified) {
+            // Membuat cookie setelah reCAPTCHA v3 terverifikasi
+            document.cookie = "recaptcha_v3_verified=true";
+            // Redirect ke Dashboard
+            window.location.href = "dashboard.html";
+          } else {
+            // Redirect kembali ke Checkpoint 2 jika reCAPTCHA v2 belum terverifikasi
+            window.location.href = "checkpoint2.html";
+          }
+        });
+    }
+  </script>
+</body>
+</html>
